@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.imshanyu.com/"/>
-  <updated>2020-03-08T08:32:56.184Z</updated>
+  <updated>2020-03-11T04:44:45.999Z</updated>
   <id>http://www.imshanyu.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>产品经理小技巧——如何汇报项目工作</title>
+    <link href="http://www.imshanyu.com/2020/03/09/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E5%B0%8F%E6%8A%80%E5%B7%A7%E2%80%94%E2%80%94%E5%A6%82%E4%BD%95%E6%B1%87%E6%8A%A5%E9%A1%B9%E7%9B%AE%E5%B7%A5%E4%BD%9C/"/>
+    <id>http://www.imshanyu.com/2020/03/09/产品经理小技巧——如何汇报项目工作/</id>
+    <published>2020-03-09T13:12:00.000Z</published>
+    <updated>2020-03-11T04:44:45.999Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h2><p>工作汇报是产品经理日常工作的组成部分，是重要的上下级沟通方式。良好的工作汇报能够获得上级的认可，能够积极的推动项目的进展。“如何能够清报告，然而对于产品经理经常需要经常汇报的有周报、项目评估报告。笔者结合自身的工作经历，总结了一些日报、项目评估汇报的重点。</p><a id="more"></a><h2 id="二、周报"><a href="#二、周报" class="headerlink" title="二、周报"></a>二、周报</h2><p>一般而言周报汇报的内容主要有本周工作任务、下周工作计划，内容从产品经理自身工作发进行编写，但是很难清晰的反映项目本周的进展情况，因此周报的内容除了工作任务之外，还需要汇报负责项目进展。周报模版如下：</p><table><thead><tr><th>填写项</th><th>内容</th><th>备注</th></tr></thead><tbody><tr><td>项目名称</td><td></td><td></td></tr><tr><td>版本号</td><td>V a.b.c</td><td>a主版本号；b次版本号;c修订号</td></tr><tr><td>项目阶段</td><td>需求设计/原型设计/UI设计/待评审/待排期/已排期/开发中/测试中/已上线</td><td>如果是APP的迭代上线阶段状态应为：已提审/已上架</td></tr><tr><td>版本功能</td><td></td><td></td></tr><tr><td>项目排期</td><td></td><td>开发周期、测试周期、计划提测时间、实际提测日期、计划上线日期、实际上线时间</td></tr><tr><td>项目人员</td><td></td><td>填写前端、后端、测试相关参与人员姓名</td></tr><tr><td>项目状态</td><td>正常/暂停/延期</td><td></td></tr><tr><td>异常原因</td><td></td><td>项目暂停、延期需要注明原因</td></tr><tr><td>项目风险</td><td></td><td>说明项目可能遇到的问题，对项目的影响，是否需要协调解决</td></tr><tr><td>本周工作</td><td></td><td>阐述本周的工作，如：跟进项目开发，解答开发、测试人员疑问；协调开发解决线上XXbug；参与##评审等</td></tr><tr><td>下周计划</td><td></td><td>下周重点工作内容</td></tr></tbody></table><h2 id="三、项目排期报告"><a href="#三、项目排期报告" class="headerlink" title="三、项目排期报告"></a>三、项目排期报告</h2><p>项目排期是上级领导关注的重点，尤其是开发工作量、开发周期、测试周期。产品经理和开发、测试的负责人沟通好相关排期后，需要进行项目排期的汇报，汇报模版如下：</p><table><thead><tr><th>填写项目</th><th>内容</th><th>备注</th></tr></thead><tbody><tr><td>项目版本</td><td></td><td></td></tr><tr><td>开发周期</td><td></td><td></td></tr><tr><td>开发工期</td><td></td><td>多少个工作日</td></tr><tr><td>后端评估工时</td><td></td><td>单位：人/天</td></tr><tr><td>前端评估工时</td><td></td><td>单位：人/天</td></tr><tr><td>单一需求最长用时</td><td></td><td>单位：人/天，同时标明需求名称</td></tr><tr><td>联调时间</td><td></td><td>联调起止日期，及耗时</td></tr><tr><td>提测验收时间</td><td></td><td>产品经理验收项目开发结果是否满足提测要求</td></tr><tr><td>测试周期</td><td></td><td></td></tr><tr><td>测试工期</td><td></td><td>多少个工作日</td></tr><tr><td>计划上线时间</td><td></td></tr></tbody></table><h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>在日常工作中，<strong>多汇报</strong>、<strong>多反馈</strong>是产品经理跟上级领导沟通的不二法门，是推进项目工作、获取项目资源的重要方式。在进行工作汇报时更多的是结合工作实际，将相关内容描述的简明扼要、易理解。笔者根据自身的工作经历，梳理了工作汇报中的一些要点，难免会有不足之处，请各位读者指正。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、概述&quot;&gt;&lt;a href=&quot;#一、概述&quot; class=&quot;headerlink&quot; title=&quot;一、概述&quot;&gt;&lt;/a&gt;一、概述&lt;/h2&gt;&lt;p&gt;工作汇报是产品经理日常工作的组成部分，是重要的上下级沟通方式。良好的工作汇报能够获得上级的认可，能够积极的推动项目的进展。“如何能够清报告，然而对于产品经理经常需要经常汇报的有周报、项目评估报告。笔者结合自身的工作经历，总结了一些日报、项目评估汇报的重点。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="产品经理" scheme="http://www.imshanyu.com/categories/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"/>
+    
+    
+      <category term="项目工作" scheme="http://www.imshanyu.com/tags/%E9%A1%B9%E7%9B%AE%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="工作总结" scheme="http://www.imshanyu.com/tags/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>通用功能设计—优惠券管理</title>
