@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://www.imshanyu.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言2020年7月24日，工信部发布了《关于开展纵深推进APP侵害用户权益专项整治行动的通知》（工信部信管函〔2020〕164号），从发文之日起至2020年12月10日开展APP侵害用户权益专项整治活动。[1] 2021年5月21日，国信办通报了抖音等105款App违法违规收集使用个人信息情况，并责令APP运营者限期内完成整改[2]。 2021年6月10日，第十三届全国人民代表大会常务委员会第二十">
+<meta name="keywords" content="产品经理,隐私合规">
+<meta property="og:type" content="article">
+<meta property="og:title" content="产品经理避坑指南（二）——隐私合规那些事(功能篇)">
+<meta property="og:url" content="http://www.imshanyu.com/2021/12/17/产品经理避坑指南（三）——隐私合规哪些事（功能篇）/index.html">
+<meta property="og:site_name" content="不积硅步，无以至千里">
+<meta property="og:description" content="前言2020年7月24日，工信部发布了《关于开展纵深推进APP侵害用户权益专项整治行动的通知》（工信部信管函〔2020〕164号），从发文之日起至2020年12月10日开展APP侵害用户权益专项整治活动。[1] 2021年5月21日，国信办通报了抖音等105款App违法违规收集使用个人信息情况，并责令APP运营者限期内完成整改[2]。 2021年6月10日，第十三届全国人民代表大会常务委员会第二十">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/%E9%A3%9E%E4%B9%A6APP%E9%A6%96%E5%90%AF%E5%8A%A8%E5%8D%8F%E8%AE%AE%E9%98%85%E8%AF%BB%E6%8F%90%E7%A4%BA.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/%E5%A4%A9%E7%8C%ABAPP%E9%A6%96%E5%90%AF%E5%8A%A8%E5%8D%8F%E8%AE%AE%E9%98%85%E8%AF%BB%E6%8F%90%E7%A4%BA.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/36%E6%B0%AAAPP%E5%8D%8F%E8%AE%AE%E6%9B%B4%E6%96%B0%E9%80%9A%E7%9F%A5.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/%E4%BA%AC%E4%B8%9C%E5%BC%80%E5%B1%8F%E9%A1%B5%E5%B9%BF%E5%91%8A.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2051641630291_.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2061641632660_.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2071641803135_.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2081641803136_.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2101641805829_.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2111641806127_.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2121641807719_.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2131642401345_.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2181642420373_.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2151642417464_.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2221642421076_.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2171642419636_.pic.jpg">
+<meta property="og:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2201642420869_.pic.jpg">
+<meta property="og:updated_time" content="2022-01-17T14:45:48.411Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="产品经理避坑指南（二）——隐私合规那些事(功能篇)">
+<meta name="twitter:description" content="前言2020年7月24日，工信部发布了《关于开展纵深推进APP侵害用户权益专项整治行动的通知》（工信部信管函〔2020〕164号），从发文之日起至2020年12月10日开展APP侵害用户权益专项整治活动。[1] 2021年5月21日，国信办通报了抖音等105款App违法违规收集使用个人信息情况，并责令APP运营者限期内完成整改[2]。 2021年6月10日，第十三届全国人民代表大会常务委员会第二十">
+<meta name="twitter:image" content="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/%E9%A3%9E%E4%B9%A6APP%E9%A6%96%E5%90%AF%E5%8A%A8%E5%8D%8F%E8%AE%AE%E9%98%85%E8%AF%BB%E6%8F%90%E7%A4%BA.pic.jpg">
+
+<link rel="canonical" href="http://www.imshanyu.com/2021/12/17/产品经理避坑指南（三）——隐私合规哪些事（功能篇）/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>产品经理避坑指南（二）——隐私合规那些事(功能篇) | 不积硅步，无以至千里</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">不积硅步，无以至千里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Demo's Blog</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-mywiki">
+
+    <a href="/MyWiki/" rel="section"><i class="fa fa-fw fa-wikipedia-w"></i>myWiki</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="搜索..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/rainflyaway" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.imshanyu.com/2021/12/17/产品经理避坑指南（三）——隐私合规哪些事（功能篇）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Yu Shan">
+      <meta itemprop="description" content="晴天是太阳露出了笑脸，雨天是太阳笑出了泪花">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不积硅步，无以至千里">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          产品经理避坑指南（二）——隐私合规那些事(功能篇)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-17 22:00:00" itemprop="dateCreated datePublished" datetime="2021-12-17T22:00:00+08:00">2021-12-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-17 22:45:48" itemprop="dateModified" datetime="2022-01-17T22:45:48+08:00">2022-01-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/产品管理/" itemprop="url" rel="index">
+                    <span itemprop="name">产品管理</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>2020年7月24日，工信部发布了《关于开展纵深推进APP侵害用户权益专项整治行动的通知》（工信部信管函〔2020〕164号），从发文之日起至2020年12月10日开展APP侵害用户权益专项整治活动。[1]</p>
+<p>2021年5月21日，国信办通报了抖音等105款App违法违规收集使用个人信息情况，并责令APP运营者限期内完成整改[2]。</p>
+<p>2021年6月10日，第十三届全国人民代表大会常务委员会第二十九次会议通过《中华人民共和国数据安全法》，自2021年9月1日起施行[3]。</p>
+<p>2021年8月20日第十三届全国人民代表大会常务委员会第三十次会议通过《中华人民共和国个人信息保护法》，自2021年11月1日起施行[4]。</p>
+<p>2021年11月14日。国信办发布了《网络数据安全管理条例（征求意见稿）》[5]。</p>
+<p>从20年到21年，国家出台了关于个人信息保护的多项法律法规，并且持续开展专项整治行动，凸显了我国严管侵犯个人隐私行为的坚定决心，而产品经理作为互联网行业重要的从业角色，更要树立法律意识，在工作中践行对用户的个人信息保护。本文通过分析相关法律法规、信息安全规范，梳理了一些产品功能设计<strong>隐私合规</strong>的注意点，希望能够帮助读者避开法律风险，解决APP隐私合规问题，更好的保护用户个人隐私。<br><a id="more"></a></p>
+<h3 id="隐私协议相关"><a href="#隐私协议相关" class="headerlink" title="隐私协议相关"></a>隐私协议相关</h3><p>隐私政策是APP公开收集使用个人信息的规则的说明，需要在首次运行或用户注册时需提示用户阅读，且要易于访问，同时当收集使用个人信息的目的、方式、范围发生变化时，要以适当的形式通知用户[6]。按照此合规要求，APP在功能设计需注意以下几点：</p>
+<ol>
+<li><p>APP首启动隐私政策阅读提示<br>市场上的通用解决方案是通过<strong>弹窗</strong>的形式进行提示，以飞书、天猫两款APP举例：<br><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/%E9%A3%9E%E4%B9%A6APP%E9%A6%96%E5%90%AF%E5%8A%A8%E5%8D%8F%E8%AE%AE%E9%98%85%E8%AF%BB%E6%8F%90%E7%A4%BA.pic.jpg" alt><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/%E5%A4%A9%E7%8C%ABAPP%E9%A6%96%E5%90%AF%E5%8A%A8%E5%8D%8F%E8%AE%AE%E9%98%85%E8%AF%BB%E6%8F%90%E7%A4%BA.pic.jpg" alt></p>
+</li>
+<li><p>APP隐私政策的访问路径深度<br>规范中要求，用户进入主功能界面后，通过 4 次(含)以内的点击等操作，能够访问到隐私政策[6]，若超过4次，则会被认定隐私政策等收集使用规则难以访问，不合规[7]。由此APP内需要有查看隐私政策等收集使用规则的入口，且用户的操作次数不能超过4次；</p>
+</li>
+<li><p>APP协议内容更新通知<br>市场上通用的解决方案是通过<strong>弹窗</strong>的形式通知用户，以36氪APP举例：<br><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/36%E6%B0%AAAPP%E5%8D%8F%E8%AE%AE%E6%9B%B4%E6%96%B0%E9%80%9A%E7%9F%A5.pic.jpg" alt></p>
+</li>
+</ol>
+<h3 id="开屏广告"><a href="#开屏广告" class="headerlink" title="开屏广告"></a>开屏广告</h3><p>根据工信部信管函〔2021〕292号，APP开屏信息和弹窗信息窗口要设置明显、有效的关闭按钮，按钮大小、位置、颜色应易于操作辨认，且APP开屏信息窗口不得使用整屏图片、视频等作为跳转链接，诱导用户点击或易造成用户误点击，给用户带来不便。以京东APP开屏页广告举例：<br><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/%E4%BA%AC%E4%B8%9C%E5%BC%80%E5%B1%8F%E9%A1%B5%E5%B9%BF%E5%91%8A.pic.jpg" alt><br>可以看到开屏广告的设计，要注意以下几个合规要求：</p>
+<ol>
+<li>关闭按钮的大小、位置、颜色要明显且易于操作；</li>
+<li>不能诱导用户点击；</li>
+<li>跳转操作为“点击”事件的响应区域要限制在button区域内，不建议采用“摇一摇”、“向上滑动”这种触发跳转操作，因为这种操作容易引发用户投诉；</li>
+<li>开屏页广告需要带有“广告”标识使其具有可识别性，能够使消费者辨明其为广告[9]；</li>
+</ol>
+<h3 id="登录-amp-注册"><a href="#登录-amp-注册" class="headerlink" title="登录&amp;注册"></a>登录&amp;注册</h3><p>登录与注册需要用户阅读并同意隐私政策，而以默认选择同意隐私政策等非明示方式征求用户同意是不合规的。因此登录&amp;注册要注意以下几个合规要求：</p>
+<ol>
+<li>不采用默认勾选隐私政策等非明示方式，让用户手动操作，设计案例如今日头条APP[6]:<br><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2051641630291_.pic.jpg" alt></li>
+<li>通过设置“下一步”“注册”“登录即代表同意”等方式征求用户同意的情形，除以显著方式展示隐私政策等收集使用规则外，还需明确执行上述动作与同意隐私政策之间的逻辑关系，以达到主动提醒用户主动阅读隐私政策后征求用户同意的效果[6]，设计案例如微信APP:<br><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2061641632660_.pic.jpg" alt></li>
+</ol>
+<h3 id="系统权限相关"><a href="#系统权限相关" class="headerlink" title="系统权限相关"></a>系统权限相关</h3><p>系统权限具有收集个人信息的能力，APP获取系统权限存在着诸如“未经用户同意收集使用个人信息”、“违反必要原则，收集与其提供的服务无关的个人信息”等不合规问题[7]。因此按照合规要求，APP申请权限应遵循最小必要原则、用户可知原则、不强制不捆绑原则、动态申请原则[10]。</p>
+<blockquote>
+<ul>
+<li>最小必要原则:仅申请 App 业务功能所必需的权限，不申请与 App 业务功能无关的权限。</li>
+<li>用户可知原则:申请的权限均应有明确、合理的使用场景，并告知用户权限申请目的。</li>
+<li>不强制不捆绑原则:不应强制申请系统权限，不要求用户一次性授权同意打开多个系统权限。</li>
+<li>动态申请原则:App 所需的权限应在对应业务功能执行时动态申请。在用户未触发相关业务功能时，不提前申请与当前业务功 能无关的权限。</li>
+</ul>
+</blockquote>
+<p>同时也要满足“提供有效的查询、更正、删除个人信息的途径”的合规要求，为用户提供相应的撤回同意已授权权限的途径。综上APP在涉及系统权限功能时要满足以下几点：</p>
+<ol>
+<li><p>申请打开可收集个人信息权限时，通过显著方式同步告知用户其目的，对目的的描述明确、易懂[6]，目前多采用弹窗提醒的方式,已58同城、今日头条APP设计举例：<br><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2071641803135_.pic.jpg" alt><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2081641803136_.pic.jpg" alt></p>
+</li>
+<li><p>申请权限时要与当前的业务功能有关[7]；</p>
+</li>
+<li>如用户拒绝或撤回授予某服务类型非必要系统权限，App不应强制退出或关闭，且不影响与此权限无关的业务功能使用[10]。</li>
+<li>如用户明确拒绝App业务功能所需权限，App不应频繁申请系统权限干扰用户正常使用，除非由用户主动触发功能，且没有该权限 参与此业务功能无法实现[10]。</li>
+<li>如App业务功能所需的权限被用户拒绝且选择禁止后不再提 示，当用户再次使用此功能时，宜以不干扰用户的方式(如文字提示) 引导用户到系统设置中去开启所需权限[10], 常见的设计方案是以弹窗的形式进行提示，如天猫APP、美团APP案例：<br><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2101641805829_.pic.jpg" alt><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2111641806127_.pic.jpg" alt></li>
+<li>不应隐蔽收集个人信息，当录音、拍摄、录屏、定位等敏感功能在后台执行时，应采用显著方式(如图标闪烁、状态栏提示、自定 义提示条等)提示用户[10]。</li>
+<li>提供APP系统权限管理的功能，帮助用户管理权限授权，设计案例如美团APP：<br><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2121641807719_.pic.jpg" alt></li>
+</ol>
+<h3 id="表单收集个人信息"><a href="#表单收集个人信息" class="headerlink" title="表单收集个人信息"></a>表单收集个人信息</h3><p>根据《App违法违规收集使用个人信息行为认定方法》，“申请收集用户身份证号、银行账号、行踪轨迹等个人敏感信息时，未同步告知用户其目的，或者目的不明确、难以理解”会被认定为“未明示收集使用个人信息的目的、方式和范围”[7]。常见需要用户填写个人敏感信息的场景有“实名认证、车辆档案、刷脸登录等。</p>
+<blockquote>
+<p>个人敏感信息是指一旦泄露、非法提供或滥用可能危害人身和财产安全，极易导致 个人名誉、身心健康受到损害或歧视性待遇等的个人信息。通常情况下，14岁以下(含) 儿童的个人信息和涉及自然人隐私的信息属于个人敏感信息[11]。</p>
+<p>个人敏感信息举例[11]：<br> |个人财产信息|个人健康生理信息|个人生物识别信息|个人身份信息|其他信息|<br>|-|-|-|-|-|<br>|银行账户、鉴别信息(口令)、存款信息(包括资金数量、支付收款记录等)、 房产信息、信贷记录、征信信息、交易和消费记录、流水记录等，以及虚 拟货币、虚拟交易、游戏类兑换码等虚拟财产信息|个人因生病医治等产生的相关记录，如病症、住院志、医嘱单、检验报告、 手术及麻醉记录、护理记录、用药记录、药物食物过敏信息、生育信息、 以往病史、诊治情况、家族病史、现病史、传染病史等|个人基因、指纹、声纹、掌纹、耳廓、虹膜、面部识别特征等|身份证、军官证、护照、驾驶证、工作证、社保卡、居住证等|性取向、婚史、宗教信仰、未公开的违法犯罪记录、通信记录和内容、通 讯录、好友列表、群组列表、行踪轨迹、网页浏览记录、住宿信息、精准 定位信息等|</p>
+</blockquote>
+<p>为了满足合规要求，需要在界面上提示用户收集个人敏感信息的目的，如移动5G物联网卡实名认证、京东商城APP爱车管理的界面：<br><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2131642401345_.pic.jpg" alt> <img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2181642420373_.pic.jpg" alt></p>
+<h3 id="账户注销"><a href="#账户注销" class="headerlink" title="账户注销"></a>账户注销</h3><p>根据《App违法违规收集使用个人信息行为认定方法》，需提供有效的注销用户账号功能[7]。同时根据相关规范要求[11]：</p>
+<ul>
+<li>受理注销账户请求后，需要人工处理的，应在承诺时限内(不超过15个工作日)完成核查和处理;</li>
+<li>注销过程如需进行身份核验，要求个人信息主体再次提供的个人信息类型不应多于注册、使用等服务环节收集的个人信息类型;</li>
+<li>注销过程不应设置不合理的条件或提出额外要求增加个人信息主体义务，如注销单个账户视同注销多个产品或服务，要求个人信息主体填写精确的历史操作<br>记录作为注销的必要条件等;</li>
+<li>个人信息主体注销账户后，应及时删除其个人信息或匿名化处理。因法律规规定需要留存个人信息的，不能再次将其用于日常业务活动中。<blockquote>
+<p>匿名化 anonymization 定义[11]：<br>通过对个人信息的技术处理，使得个人信息主体无法被识别或者关联，且处理后的 信息不能被复原的过程(注:个人信息经匿名化处理后所得的信息不属于个人信息)。</p>
+</blockquote>
+</li>
+</ul>
+<p>目前市场上的APP的账户注销的流程，主要有以下步骤：</p>
+<ol>
+<li>阅读注销账户须知及同意用户注销协议；</li>
+<li>身份验证（一般为短信验证码形式）；</li>
+<li>系统执行账户注销操作并返回登录界面；</li>
+</ol>
+<h3 id="个性化展示相关"><a href="#个性化展示相关" class="headerlink" title="个性化展示相关"></a>个性化展示相关</h3><p>个性化展示（personalized display）是基于特定个人信息主体的网络浏览历史、兴趣爱好、消费记录和习惯等个人信息， 向该个人信息主体展示信息内容、提供商品或服务的搜索结果等活动[11]。根据工信部信管函〔2020〕164号文，“APP、SDK未以显著方式标示且未经用户同意，将收集到的用户搜索、浏览记录、使用习惯等个人信息，用于定向推送或广告精准营销，且未提供关闭该功能选项的行为“为不合规行为.因此APP在设计个性化相关的业务功能时，需要考虑以下几点：</p>
+<ol>
+<li>收集个人信息用于个性化推荐时，应当取得个人单独同意 [5]；</li>
+<li>显著区分个性化展示的内容和非个性化展示的内容; 注:显著区分的方式包括但不限于:标明“定推”等字样，或通过不同的栏目、版块、页面分别展示等[11]。如今日头条APP为例，其首页的推荐频道展示的就是个性化推荐的内容。<br><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2151642417464_.pic.jpg" alt></li>
+<li>设置易于理解、便于访问和操作的一键关闭个性化推荐选项，允许用户拒绝接受定向推送信息，允许用户重置、修改、调整针对其个人特征的定向推送参数[5]，以美团APP的设计举例：<br><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2221642421076_.pic.jpg" alt></li>
+<li>允许个人删除定向推送信息服务收集产生的个人信息，法律、行政法规另有规定或者与用户另有约定的除外[5]。</li>
+</ol>
+<h3 id="个人信息保护“双清单”"><a href="#个人信息保护“双清单”" class="headerlink" title="个人信息保护“双清单”"></a>个人信息保护“双清单”</h3><p>根据工信部信管函〔2021〕292号，APP需要在APP二级菜单中展示收集个人信息清单和与第三方共享个人信息清单，方便用户查询[14]。以京东商城APP设计举例：<br><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2171642419636_.pic.jpg" alt></p>
+<h3 id="用户个人信息查询、更正、获取副本"><a href="#用户个人信息查询、更正、获取副本" class="headerlink" title="用户个人信息查询、更正、获取副本"></a>用户个人信息查询、更正、获取副本</h3><p>根据《个人信息安全规范》《网络数据安全管理条例（征求意见稿）》,APP应为用户提供相应的便捷功能支持结构化查询被收集的个人信息、复制其个人信息等相关功能[5][11]。以微信APP的设计举例：<br><img src="https://myblog-1258446254.cos.ap-beijing.myqcloud.com/2201642420869_.pic.jpg" alt></p>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>数据处理者利用生物特征进行个人身份认证的，应当对必要性、安全性进行风险评估，不得将人脸、步态、指纹、虹膜、声纹等生物特征作为唯一的个人身份认证方式，以强制个人同意收集其个人生物特征信息[13]。<br>除仅用于安全风控场景外，App不应收集不可变更的唯一设备 识别码(如IMEI、MAC地址)[10]。<br>不得因个人拒绝提供服务必需的个人信息以外的信息，拒绝提供服务或者干扰个人正常使用服务[5]。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>现行的法律法规和相关规范已经对APP个人信息保护提出了系统全面的要求，产品经理作为从业者要把保护用户隐私的意识放在心头，设计出符合相关法律法规的解决方案。</p>
+<p>笔者梳理总结出的内容，希望能给帮助读者规避风险，使负责的产品合法合规，更好的保护用户个人隐私。鉴于笔者能力有限，对资料的收集和发掘不够，错误在所难免，敬请各位读者斧正。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]<a href="https://www.miit.gov.cn/zwgk/zcwj/wjfb/txy/art/2020/art_399f162b876040deab3d0534764f856f.html" target="_blank" rel="noopener">《关于开展纵深推进APP侵害用户权益专项整治行动的通知》</a>.工信部信管函〔2020〕164号.工信部.</p>
+<p>[2]<a href="http://www.cac.gov.cn/2021-05/20/c_1623091083320667.htm" target="_blank" rel="noopener">《关于抖音等105款App违法违规收集使用个人信息情况的通报》</a>.国信办.</p>
+<p>[3]<a href="http://www.xinhuanet.com/2021-06/11/c_1127552204.htm" target="_blank" rel="noopener">（受权发布）中华人民共和国数据安全法</a>.新华网</p>
+<p>[4]<a href="http://www.xinhuanet.com/2021-08/20/c_1127781552.htm" target="_blank" rel="noopener">（受权发布）中华人民共和国个人信息保护法</a>.新华网</p>
+<p>[5]国信办,<a href="http://www.cac.gov.cn/2021-11/14/c_1638501991577898.htm" target="_blank" rel="noopener">《网络数据安全管理条例（征求意见稿）》</a>.2021-11-14.</p>
+<p>[6]全国信息安全标准化技术委员会秘书处.网络安全标准实践指南—移动互联网应用程序（App）收集使用个人信息自评估指南.2020-7.</p>
+<p>[7]国信办,工信部,公安部市,市监总局.<a href="http://www.cac.gov.cn/2019-12/27/c_1578986455686625.htm" target="_blank" rel="noopener">App违法违规收集使用个人信息行为认定方法</a>.2019-11-28.</p>
+<p>[8]工信部.<a href="http://www.gov.cn/zhengce/zhengceku/2021-11/06/content_5649420.htm" target="_blank" rel="noopener">工业和信息化部关于开展信息通信服务感知提升行动的通知</a>.</p>
+<p>[9]<a href="https://www.samr.gov.cn/hd/zjdc/202111/t20211126_337380.html" target="_blank" rel="noopener">《互联网广告管理办法（公开征求意见稿）》</a>.市场监管总局.2021-11-26.</p>
+<p>[10]全国信息安全标准化技术委员会秘书处.网络安全标准实践指南 移动互联网应用程序（App）系统权限申请使用指南.2020-9.</p>
+<p>[11]国家市场监督管理总局,国家标准化管理委员会.GB∕T 35273-2020,信息安全技术个人信息安全规范.2020-10-1.</p>
+<p>[12]工信部.工信部信管函〔2020〕164号,关于开展纵深推进APP侵害用户权益专项整治行动的通知.2020-07-24.</p>
+<p>[13]工信部.工信部信管函〔2021〕292号,工业和信息化部关于开展信息通信服务感知提升行动的通知.2021-11-01.</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Yu Shan
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.imshanyu.com/2021/12/17/产品经理避坑指南（三）——隐私合规哪些事（功能篇）/" title="产品经理避坑指南（二）——隐私合规那些事(功能篇)">http://www.imshanyu.com/2021/12/17/产品经理避坑指南（三）——隐私合规哪些事（功能篇）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/产品经理/" rel="tag"># 产品经理</a>
+              <a href="/tags/隐私合规/" rel="tag"># 隐私合规</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/17/产品经理避坑指南（二）——这些年我经历的非技术风险/" rel="prev" title="产品经理避坑指南（二）——这些年我经历的非技术风险">
+      <i class="fa fa-chevron-left"></i> 产品经理避坑指南（二）——这些年我经历的非技术风险
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#隐私协议相关"><span class="nav-text">隐私协议相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开屏广告"><span class="nav-text">开屏广告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录-amp-注册"><span class="nav-text">登录&amp;注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统权限相关"><span class="nav-text">系统权限相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单收集个人信息"><span class="nav-text">表单收集个人信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#账户注销"><span class="nav-text">账户注销</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个性化展示相关"><span class="nav-text">个性化展示相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人信息保护“双清单”"><span class="nav-text">个人信息保护“双清单”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户个人信息查询、更正、获取副本"><span class="nav-text">用户个人信息查询、更正、获取副本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它"><span class="nav-text">其它</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yu Shan" src="/uploads/avatar.png">
+  <p class="site-author-name" itemprop="name">Yu Shan</p>
+  <div class="site-description" itemprop="description">晴天是太阳露出了笑脸，雨天是太阳笑出了泪花</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/rainflyaway" title="GitHub → https://github.com/rainflyaway" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:rainflyaway@outlook.com" title="E-Mail → mailto:rainflyaway@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.jianshu.com/u/797a25f9ffd9" title="简书 → https://www.jianshu.com/u/797a25f9ffd9" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/rainflyfly" title="CSDN → https://blog.csdn.net/rainflyfly" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.pmcaff.com/user/profile/xqB6qm3zQ4" title="PMCAFF → https://www.pmcaff.com/user/profile/xqB6qm3zQ4" rel="noopener" target="_blank"><i class="fa fa-fw fa-comment"></i>PMCAFF</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.woshipm.com/u/924173" title="WOSHIPM → https://www.woshipm.com/u/924173" rel="noopener" target="_blank"><i class="fa fa-fw fa-comment"></i>WOSHIPM</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → /atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yu Shan</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
